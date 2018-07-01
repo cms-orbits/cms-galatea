@@ -1,3 +1,7 @@
+# Secrets and credentials
+src/main/resources/application.properties
+src/main/resources/application-main.properties
+
 # Distribution directory
 target
 
@@ -10,3 +14,7 @@ target
 Thumbs.db
 .DS_Store
 ._*
+
+# Roo
+log.roo
+*.aj
