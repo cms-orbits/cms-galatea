@@ -1,0 +1,12 @@
+# Distribution directory
+target
+
+# IDE's
+.idea
+*.iml
+.vscode
+
+# OS cache
+Thumbs.db
+.DS_Store
+._*
