@@ -5,8 +5,6 @@ package com.jossemargt.cmsgalatea.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.jossemargt.cmsgalatea.config.SpringDataJpaDetachableRepositoryConfiguration;
-import com.jossemargt.cmsgalatea.dod.DataOnDemandConfiguration;
 import com.jossemargt.cmsgalatea.model.Task;
 import com.jossemargt.cmsgalatea.model.dod.TaskDataOnDemand;
 import com.jossemargt.cmsgalatea.repository.TaskRepository;
@@ -17,21 +15,11 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 privileged aspect TaskRepositoryIT_Roo_RepositoryJpaIntegrationTest {
-    
-    declare @type: TaskRepositoryIT: @RunWith(SpringRunner.class);
-    
-    declare @type: TaskRepositoryIT: @DataJpaTest;
-    
-    declare @type: TaskRepositoryIT: @Import({ DataOnDemandConfiguration.class, SpringDataJpaDetachableRepositoryConfiguration.class });
     
     /**
      * TODO Auto-generated attribute documentation

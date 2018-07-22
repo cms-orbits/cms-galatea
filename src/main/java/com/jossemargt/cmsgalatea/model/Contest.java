@@ -24,6 +24,10 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import org.springframework.roo.addon.jpa.annotations.entity.JpaRelationType;
 import org.springframework.roo.addon.jpa.annotations.entity.RooJpaRelation;
+import io.springlets.format.EntityFormat;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * = Contest
@@ -34,6 +38,9 @@ import org.springframework.roo.addon.jpa.annotations.entity.RooJpaRelation;
 @RooToString
 @RooJpaEntity(table = "contests", readOnly = true)
 @RooEquals(isJpaEntity = true)
+@Entity
+@Table(name = "contests")
+@EntityFormat
 public class Contest {
 
     /**
@@ -48,7 +55,8 @@ public class Contest {
      * TODO Auto-generated attribute documentation
      *
      */
-    @Version @Transient
+    @Version
+    @Transient
     private Integer version;
 
     /**
@@ -290,4 +298,322 @@ public class Contest {
     @OneToMany(cascade = { javax.persistence.CascadeType.MERGE, javax.persistence.CascadeType.PERSIST }, fetch = FetchType.LAZY, mappedBy = "contest")
     @RooJpaRelation(type = JpaRelationType.AGGREGATION)
     private Set<Task> tasks = new HashSet<Task>();
+
+    /**
+     * Gets id value
+     *
+     * @return Long
+     */
+    public Long getId() {
+        return this.id;
+    }
+
+    /**
+     * Gets version value
+     *
+     * @return Integer
+     */
+    public Integer getVersion() {
+        return this.version;
+    }
+
+    /**
+     * Gets name value
+     *
+     * @return String
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Gets description value
+     *
+     * @return String
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Gets allowedLocalizations value
+     *
+     * @return String
+     */
+    public String getAllowedLocalizations() {
+        return this.allowedLocalizations;
+    }
+
+    /**
+     * Gets languages value
+     *
+     * @return String
+     */
+    public String getLanguages() {
+        return this.languages;
+    }
+
+    /**
+     * Gets submissionsDownloadAllowed value
+     *
+     * @return Boolean
+     */
+    public Boolean getSubmissionsDownloadAllowed() {
+        return this.submissionsDownloadAllowed;
+    }
+
+    /**
+     * Gets allowQuestions value
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowQuestions() {
+        return this.allowQuestions;
+    }
+
+    /**
+     * Gets allowUserTests value
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowUserTests() {
+        return this.allowUserTests;
+    }
+
+    /**
+     * Gets blockHiddenParticipations value
+     *
+     * @return Boolean
+     */
+    public Boolean getBlockHiddenParticipations() {
+        return this.blockHiddenParticipations;
+    }
+
+    /**
+     * Gets allowPasswordAuthentication value
+     *
+     * @return Boolean
+     */
+    public Boolean getAllowPasswordAuthentication() {
+        return this.allowPasswordAuthentication;
+    }
+
+    /**
+     * Gets ipRestriction value
+     *
+     * @return Boolean
+     */
+    public Boolean getIpRestriction() {
+        return this.ipRestriction;
+    }
+
+    /**
+     * Gets ipAutologin value
+     *
+     * @return Boolean
+     */
+    public Boolean getIpAutologin() {
+        return this.ipAutologin;
+    }
+
+    /**
+     * Gets tokenMode value
+     *
+     * @return TokenMode
+     */
+    public TokenMode getTokenMode() {
+        return this.tokenMode;
+    }
+
+    /**
+     * Gets tokenMaxNumber value
+     *
+     * @return Integer
+     */
+    public Integer getTokenMaxNumber() {
+        return this.tokenMaxNumber;
+    }
+
+    /**
+     * Gets tokenMinInterval value
+     *
+     * @return LocalTime
+     */
+    public LocalTime getTokenMinInterval() {
+        return this.tokenMinInterval;
+    }
+
+    /**
+     * Gets tokenGenInitial value
+     *
+     * @return Integer
+     */
+    public Integer getTokenGenInitial() {
+        return this.tokenGenInitial;
+    }
+
+    /**
+     * Gets tokenGenNumber value
+     *
+     * @return Integer
+     */
+    public Integer getTokenGenNumber() {
+        return this.tokenGenNumber;
+    }
+
+    /**
+     * Gets tokenGenMax value
+     *
+     * @return Integer
+     */
+    public Integer getTokenGenMax() {
+        return this.tokenGenMax;
+    }
+
+    /**
+     * Gets tokenGenInterval value
+     *
+     * @return LocalTime
+     */
+    public LocalTime getTokenGenInterval() {
+        return this.tokenGenInterval;
+    }
+
+    /**
+     * Gets startTime value
+     *
+     * @return Instant
+     */
+    public Instant getStartTime() {
+        return this.startTime;
+    }
+
+    /**
+     * Gets stopTime value
+     *
+     * @return Instant
+     */
+    public Instant getStopTime() {
+        return this.stopTime;
+    }
+
+    /**
+     * Gets analysisEnabled value
+     *
+     * @return Boolean
+     */
+    public Boolean getAnalysisEnabled() {
+        return this.analysisEnabled;
+    }
+
+    /**
+     * Gets analysisStart value
+     *
+     * @return Instant
+     */
+    public Instant getAnalysisStart() {
+        return this.analysisStart;
+    }
+
+    /**
+     * Gets analysisStop value
+     *
+     * @return Instant
+     */
+    public Instant getAnalysisStop() {
+        return this.analysisStop;
+    }
+
+    /**
+     * Gets maxSubmissionNumber value
+     *
+     * @return Integer
+     */
+    public Integer getMaxSubmissionNumber() {
+        return this.maxSubmissionNumber;
+    }
+
+    /**
+     * Gets maxUserTestNumber value
+     *
+     * @return Integer
+     */
+    public Integer getMaxUserTestNumber() {
+        return this.maxUserTestNumber;
+    }
+
+    /**
+     * Gets minSubmissionInterval value
+     *
+     * @return LocalTime
+     */
+    public LocalTime getMinSubmissionInterval() {
+        return this.minSubmissionInterval;
+    }
+
+    /**
+     * Gets minUserTestInterval value
+     *
+     * @return LocalTime
+     */
+    public LocalTime getMinUserTestInterval() {
+        return this.minUserTestInterval;
+    }
+
+    /**
+     * Gets scorePrecision value
+     *
+     * @return Integer
+     */
+    public Integer getScorePrecision() {
+        return this.scorePrecision;
+    }
+
+    /**
+     * Gets tasks value
+     *
+     * @return Set
+     */
+    public Set<Task> getTasks() {
+        return this.tasks;
+    }
+
+    /**
+     * This `equals` implementation is specific for JPA entities and uses
+     * the entity identifier for it, following the article in
+     * https://vladmihalcea.com/2016/06/06/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+     *
+     * @param obj
+     * @return Boolean
+     */
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        // instanceof is false if the instance is null
+        if (!(obj instanceof Contest)) {
+            return false;
+        }
+        return getId() != null && Objects.equals(getId(), ((Contest) obj).getId());
+    }
+
+    /**
+     * This `hashCode` implementation is specific for JPA entities and uses a fixed `int` value to be able
+     * to identify the entity in collections after a new id is assigned to the entity, following the article in
+     * https://vladmihalcea.com/2016/06/06/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+     *
+     * @return Integer
+     */
+    public int hashCode() {
+        return 31;
+    }
+
+    /**
+     * TODO Auto-generated method documentation
+     *
+     * @return String
+     */
+    public String toString() {
+        return "Contest {" + "id='" + id + '\'' + ", version='" + version + '\'' + ", name='" + name + '\'' + ", description='" + description + '\'' + ", allowedLocalizations='" + allowedLocalizations + '\'' + ", languages='" + languages + '\'' + ", submissionsDownloadAllowed='" + submissionsDownloadAllowed + '\'' + ", allowQuestions='" + allowQuestions + '\'' + ", allowUserTests='" + allowUserTests + '\'' + ", blockHiddenParticipations='" + blockHiddenParticipations + '\'' + ", allowPasswordAuthentication='" + allowPasswordAuthentication + '\'' + ", ipRestriction='" + ipRestriction + '\'' + ", ipAutologin='" + ipAutologin + '\'' + ", tokenMaxNumber='" + tokenMaxNumber + '\'' + ", tokenGenInitial='" + tokenGenInitial + '\'' + ", tokenGenNumber='" + tokenGenNumber + '\'' + ", tokenGenMax='" + tokenGenMax + '\'' + ", analysisEnabled='" + analysisEnabled + '\'' + ", maxSubmissionNumber='" + maxSubmissionNumber + '\'' + ", maxUserTestNumber='" + maxUserTestNumber + '\'' + ", scorePrecision='" + scorePrecision + '\'' + "}" + super.toString();
+    }
 }

@@ -7,13 +7,9 @@ import com.jossemargt.cmsgalatea.dod.DataOnDemandConfiguration;
 import com.jossemargt.cmsgalatea.model.dod.ContestDataOnDemand;
 import com.jossemargt.cmsgalatea.model.dod.TaskDataOnDemand;
 import javax.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 
 privileged aspect DataOnDemandConfiguration_Roo_JpaDataOnDemandConfiguration {
-    
-    declare @type: DataOnDemandConfiguration: @TestConfiguration;
     
     /**
      * TODO Auto-generated attribute documentation
@@ -21,16 +17,6 @@ privileged aspect DataOnDemandConfiguration_Roo_JpaDataOnDemandConfiguration {
      */
     private EntityManager DataOnDemandConfiguration.entityManager;
     
-    /**
-     * TODO Auto-generated constructor documentation
-     * 
-     * @param entityManager
-     */
-    @Autowired
-    public DataOnDemandConfiguration.new(EntityManager entityManager) {
-        setEntityManager(entityManager);
-    }
-
     /**
      * TODO Auto-generated method documentation
      * 

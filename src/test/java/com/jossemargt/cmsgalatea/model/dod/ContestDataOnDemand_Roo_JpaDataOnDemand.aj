@@ -52,26 +52,6 @@ privileged aspect ContestDataOnDemand_Roo_JpaDataOnDemand {
     private ContestFactory ContestDataOnDemand.factory = new ContestFactory();
     
     /**
-     * TODO Auto-generated constructor documentation
-     * 
-     * @param entityManager
-     */
-    public ContestDataOnDemand.new(EntityManager entityManager) {
-        this(entityManager, 10);
-    }
-
-    /**
-     * TODO Auto-generated constructor documentation
-     * 
-     * @param entityManager
-     * @param size
-     */
-    public ContestDataOnDemand.new(EntityManager entityManager, int size) {
-        setEntityManager(entityManager);
-        setSize(size);
-    }
-
-    /**
      * TODO Auto-generated method documentation
      * 
      * @return Random

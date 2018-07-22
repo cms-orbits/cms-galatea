@@ -52,26 +52,6 @@ privileged aspect TaskDataOnDemand_Roo_JpaDataOnDemand {
     private TaskFactory TaskDataOnDemand.factory = new TaskFactory();
     
     /**
-     * TODO Auto-generated constructor documentation
-     * 
-     * @param entityManager
-     */
-    public TaskDataOnDemand.new(EntityManager entityManager) {
-        this(entityManager, 10);
-    }
-
-    /**
-     * TODO Auto-generated constructor documentation
-     * 
-     * @param entityManager
-     * @param size
-     */
-    public TaskDataOnDemand.new(EntityManager entityManager, int size) {
-        setEntityManager(entityManager);
-        setSize(size);
-    }
-
-    /**
      * TODO Auto-generated method documentation
      * 
      * @return Random

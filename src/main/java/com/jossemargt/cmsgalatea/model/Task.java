@@ -27,6 +27,9 @@ import org.springframework.roo.addon.jpa.annotations.entity.RooJpaRelation;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.OneToMany;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * = Task
@@ -37,6 +40,9 @@ import javax.persistence.OneToMany;
 @RooToString
 @RooJpaEntity(table = "tasks", readOnly = true)
 @RooEquals(isJpaEntity = true)
+@Entity
+@Table(name = "tasks")
+@EntityFormat
 public class Task {
 
     /**
@@ -51,7 +57,8 @@ public class Task {
      * TODO Auto-generated attribute documentation
      *
      */
-    @Version @Transient
+    @Version
+    @Transient
     private Integer version;
 
     /**
@@ -234,4 +241,259 @@ public class Task {
     @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
     @RooJpaRelation(type = JpaRelationType.COMPOSITION)
     private List<Attachment> attachments = new ArrayList<Attachment>();
+
+    /**
+     * Gets id value
+     *
+     * @return Long
+     */
+    public Long getId() {
+        return this.id;
+    }
+
+    /**
+     * Gets version value
+     *
+     * @return Integer
+     */
+    public Integer getVersion() {
+        return this.version;
+    }
+
+    /**
+     * Gets num value
+     *
+     * @return Integer
+     */
+    public Integer getNum() {
+        return this.num;
+    }
+
+    /**
+     * Gets name value
+     *
+     * @return String
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Gets title value
+     *
+     * @return String
+     */
+    public String getTitle() {
+        return this.title;
+    }
+
+    /**
+     * Gets primaryStatements value
+     *
+     * @return String
+     */
+    public String getPrimaryStatements() {
+        return this.primaryStatements;
+    }
+
+    /**
+     * Gets tokenMode value
+     *
+     * @return TokenMode
+     */
+    public TokenMode getTokenMode() {
+        return this.tokenMode;
+    }
+
+    /**
+     * Gets tokenMaxNumber value
+     *
+     * @return Integer
+     */
+    public Integer getTokenMaxNumber() {
+        return this.tokenMaxNumber;
+    }
+
+    /**
+     * Gets tokenMinInterval value
+     *
+     * @return LocalTime
+     */
+    public LocalTime getTokenMinInterval() {
+        return this.tokenMinInterval;
+    }
+
+    /**
+     * Gets tokenGenInitial value
+     *
+     * @return Integer
+     */
+    public Integer getTokenGenInitial() {
+        return this.tokenGenInitial;
+    }
+
+    /**
+     * Gets tokenGenNumber value
+     *
+     * @return Integer
+     */
+    public Integer getTokenGenNumber() {
+        return this.tokenGenNumber;
+    }
+
+    /**
+     * Gets tokenGenMax value
+     *
+     * @return Integer
+     */
+    public Integer getTokenGenMax() {
+        return this.tokenGenMax;
+    }
+
+    /**
+     * Gets tokenGenInterval value
+     *
+     * @return LocalTime
+     */
+    public LocalTime getTokenGenInterval() {
+        return this.tokenGenInterval;
+    }
+
+    /**
+     * Gets maxSubmissionNumber value
+     *
+     * @return Integer
+     */
+    public Integer getMaxSubmissionNumber() {
+        return this.maxSubmissionNumber;
+    }
+
+    /**
+     * Gets maxUserTestNumber value
+     *
+     * @return Integer
+     */
+    public Integer getMaxUserTestNumber() {
+        return this.maxUserTestNumber;
+    }
+
+    /**
+     * Gets minSubmissionInterval value
+     *
+     * @return LocalTime
+     */
+    public LocalTime getMinSubmissionInterval() {
+        return this.minSubmissionInterval;
+    }
+
+    /**
+     * Gets minUserTestInterval value
+     *
+     * @return LocalTime
+     */
+    public LocalTime getMinUserTestInterval() {
+        return this.minUserTestInterval;
+    }
+
+    /**
+     * Gets scorePrecision value
+     *
+     * @return Integer
+     */
+    public Integer getScorePrecision() {
+        return this.scorePrecision;
+    }
+
+    /**
+     * Gets scoreMode value
+     *
+     * @return ScoreMode
+     */
+    public ScoreMode getScoreMode() {
+        return this.scoreMode;
+    }
+
+    /**
+     * Gets contest value
+     *
+     * @return Contest
+     */
+    public Contest getContest() {
+        return this.contest;
+    }
+
+    /**
+     * Gets activeDataset value
+     *
+     * @return Dataset
+     */
+    public Dataset getActiveDataset() {
+        return this.activeDataset;
+    }
+
+    /**
+     * Gets submissionFileFormats value
+     *
+     * @return List
+     */
+    public List<SubmissionFormatElement> getSubmissionFileFormats() {
+        return this.submissionFileFormats;
+    }
+
+    /**
+     * Gets statements value
+     *
+     * @return List
+     */
+    public List<Statement> getStatements() {
+        return this.statements;
+    }
+
+    /**
+     * Gets attachments value
+     *
+     * @return List
+     */
+    public List<Attachment> getAttachments() {
+        return this.attachments;
+    }
+
+    /**
+     * This `equals` implementation is specific for JPA entities and uses
+     * the entity identifier for it, following the article in
+     * https://vladmihalcea.com/2016/06/06/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+     *
+     * @param obj
+     * @return Boolean
+     */
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        // instanceof is false if the instance is null
+        if (!(obj instanceof Task)) {
+            return false;
+        }
+        return getId() != null && Objects.equals(getId(), ((Task) obj).getId());
+    }
+
+    /**
+     * This `hashCode` implementation is specific for JPA entities and uses a fixed `int` value to be able
+     * to identify the entity in collections after a new id is assigned to the entity, following the article in
+     * https://vladmihalcea.com/2016/06/06/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+     *
+     * @return Integer
+     */
+    public int hashCode() {
+        return 31;
+    }
+
+    /**
+     * TODO Auto-generated method documentation
+     *
+     * @return String
+     */
+    public String toString() {
+        return "Task {" + "id='" + id + '\'' + ", version='" + version + '\'' + ", num='" + num + '\'' + ", name='" + name + '\'' + ", title='" + title + '\'' + ", primaryStatements='" + primaryStatements + '\'' + ", tokenMaxNumber='" + tokenMaxNumber + '\'' + ", tokenGenInitial='" + tokenGenInitial + '\'' + ", tokenGenNumber='" + tokenGenNumber + '\'' + ", tokenGenMax='" + tokenGenMax + '\'' + ", maxSubmissionNumber='" + maxSubmissionNumber + '\'' + ", maxUserTestNumber='" + maxUserTestNumber + '\'' + ", scorePrecision='" + scorePrecision + '\'' + "}" + super.toString();
+    }
 }

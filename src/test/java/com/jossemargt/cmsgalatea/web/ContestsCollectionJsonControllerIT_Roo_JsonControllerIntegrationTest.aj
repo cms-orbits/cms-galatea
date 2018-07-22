@@ -5,21 +5,13 @@ package com.jossemargt.cmsgalatea.web;
 
 import com.jossemargt.cmsgalatea.model.dod.ContestFactory;
 import com.jossemargt.cmsgalatea.service.api.ContestService;
-import com.jossemargt.cmsgalatea.web.ContestsCollectionJsonController;
 import com.jossemargt.cmsgalatea.web.ContestsCollectionJsonControllerIT;
-import io.springlets.boot.test.autoconfigure.web.servlet.SpringletsWebMvcTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 privileged aspect ContestsCollectionJsonControllerIT_Roo_JsonControllerIntegrationTest {
-    
-    declare @type: ContestsCollectionJsonControllerIT: @RunWith(SpringRunner.class);
-    
-    declare @type: ContestsCollectionJsonControllerIT: @SpringletsWebMvcTest(controllers = ContestsCollectionJsonController.class, secure = false);
     
     /**
      * TODO Auto-generated attribute documentation
