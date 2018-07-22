@@ -24,8 +24,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import org.springframework.roo.addon.jpa.annotations.entity.JpaRelationType;
 import org.springframework.roo.addon.jpa.annotations.entity.RooJpaRelation;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.OneToMany;
 
 /**
@@ -209,29 +209,29 @@ public class Task {
     /**
      * The Dataset currently being used for scoring.
      */
-    @OneToOne(cascade = { javax.persistence.CascadeType.ALL }, orphanRemoval = false, fetch = FetchType.LAZY, mappedBy = "task")
-    @RooJpaRelation(type = JpaRelationType.COMPOSITION)
+    @OneToOne(cascade = { javax.persistence.CascadeType.MERGE, javax.persistence.CascadeType.PERSIST }, orphanRemoval = false, fetch = FetchType.LAZY, mappedBy = "task")
+    @RooJpaRelation(type = JpaRelationType.AGGREGATION)
     @EntityFormat
     private Dataset activeDataset;
 
     /**
-     * All the task's statements in different languages.
-     */
-    @OneToMany(cascade = { javax.persistence.CascadeType.MERGE, javax.persistence.CascadeType.PERSIST }, fetch = FetchType.LAZY, mappedBy = "task")
-    @RooJpaRelation(type = JpaRelationType.AGGREGATION)
-    private Set<Statement> statements = new HashSet<Statement>();
-
-    /**
      * The filename formats that the participant's submissions must follow.
      */
-    @OneToMany(cascade = { javax.persistence.CascadeType.MERGE, javax.persistence.CascadeType.PERSIST }, fetch = FetchType.EAGER, mappedBy = "task")
-    @RooJpaRelation(type = JpaRelationType.AGGREGATION)
-    private Set<SubmissionFormatElement> submissionFileFormats = new HashSet<SubmissionFormatElement>();
+    @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
+    @RooJpaRelation(type = JpaRelationType.COMPOSITION)
+    private List<SubmissionFormatElement> submissionFileFormats = new ArrayList<SubmissionFormatElement>();
+
+    /**
+     * All the task's statements in different languages.
+     */
+    @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
+    @RooJpaRelation(type = JpaRelationType.COMPOSITION)
+    private List<Statement> statements = new ArrayList<Statement>();
 
     /**
      * All the statement's attachments.
      */
     @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
     @RooJpaRelation(type = JpaRelationType.COMPOSITION)
-    private Set<Attachment> attachments = new HashSet<Attachment>();
+    private List<Attachment> attachments = new ArrayList<Attachment>();
 }

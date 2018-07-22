@@ -110,6 +110,12 @@
                 <artifactId>springlets-boot-starter-web</artifactId>
                 <version>${springlets.version}</version>
             </dependency>
+        <dependency>
+                <groupId>io.springlets</groupId>
+                <artifactId>springlets-boot-starter-test</artifactId>
+                <version>${springlets.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
   </dependencyManagement>
 
@@ -211,6 +217,25 @@
     <dependency>
             <groupId>io.springlets</groupId>
             <artifactId>springlets-boot-starter-web</artifactId>
+        </dependency>
+    <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    <dependency>
+            <groupId>io.springlets</groupId>
+            <artifactId>springlets-boot-starter-test</artifactId>
         </dependency>
     </dependencies>
 
@@ -341,6 +366,24 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <configuration>
+			<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+			<excludes>
+        <exclude>**/*_Roo_*</exclude>
+      </excludes>
+		</configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
     </pluginManagement>
 
@@ -358,9 +401,9 @@
          <artifactId>aspectj-maven-plugin</artifactId>
        </plugin>
        <plugin>
-         <groupId>org.apache.maven.plugins</groupId>
-         <artifactId>maven-surefire-plugin</artifactId>
-       </plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
        <plugin>
          <groupId>org.apache.maven.plugins</groupId>
          <artifactId>maven-javadoc-plugin</artifactId>
@@ -368,6 +411,21 @@
     <plugin>
                 <groupId>com.mysema.maven</groupId>
                 <artifactId>apt-maven-plugin</artifactId>
+            </plugin>
+        <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
         </plugins>
   </build>

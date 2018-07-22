@@ -184,3 +184,20 @@ web mvc setup
 // Only expose the Resources that matter
 web mvc controller --entity ~.model.Contest --pathPrefix /galatea/v1/ --responseType JSON
 web mvc controller --entity ~.model.Task --pathPrefix /galatea/v1/ --responseType JSON
+
+//------------------------
+// (Placeholder) Unit tests
+//------------------------
+test unit --class ~.model.Contest
+test unit --class ~.model.Task
+
+//------------------------
+// (Placeholder) Integration tests
+//------------------------
+test integration --class ~.repository.ContestRepository
+test integration --class ~.repository.TaskRepository
+
+test integration --class ~.web.ContestsCollectionJsonController
+test integration --class ~.web.ContestsItemJsonController
+test integration --class ~.web.TasksCollectionJsonController
+test integration --class ~.web.TasksItemJsonController
