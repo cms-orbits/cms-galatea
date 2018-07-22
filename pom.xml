@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <!-- Spring IO Platform is the parent of the generated application to be able to
-    use Spring Boot and all its default configuration -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- Spring IO Platform is the parent of the application to be able touse 
+  Spring Boot and all its default configuration -->
   <parent>
     <groupId>io.spring.platform</groupId>
     <artifactId>platform-bom</artifactId>
-    <version>Athens-RELEASE</version>
+    <version>Brussels-SR11</version>
     <relativePath/>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jossemargt.cmsgalatea</groupId>
   <artifactId>cmsgalatea</artifactId>
-  <version>1.0.0.BUILD-SNAPSHOT</version>
+  <version>0.1.0.BUILD-SNAPSHOT</version>
   <name>cmsgalatea</name>
 
   <packaging>jar</packaging>
@@ -22,11 +23,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <aspectj.plugin.version>1.8</aspectj.plugin.version>
     <asciidoclet.version>1.5.4</asciidoclet.version>
-    <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
-  <java.version>1.8</java.version>
+    <spring-boot.version>1.5.14.RELEASE</spring-boot.version>
+    <java.version>1.8</java.version>
     <springlets.version>1.2.0.RELEASE</springlets.version>
     <tracee.version>1.1.2</tracee.version>
-    </properties>
+  </properties>
 
   <repositories>
     <!-- Maven Snapshots Repository -->
@@ -34,12 +35,12 @@
       <id>maven-snapshot-repository</id>
       <name>Maven Snapshot Repository</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <releases>
-          <enabled>false</enabled>
-        </releases>
-        <snapshots>
-          <enabled>true</enabled>
-        </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
     <!-- Spring Roo repository -->
     <repository>
@@ -52,26 +53,26 @@
   <dependencyManagement>
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.2.17.Final</version>
-        </dependency>
+      <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>5.2.17.Final</version>
+      </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.2.17.Final</version>
-        </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>5.2.17.Final</version>
+      </dependency>
 
-        <dependency>
-            <groupId>org.hibernate.common</groupId>
-            <artifactId>hibernate-commons-annotations</artifactId>
-            <version>5.0.4.Final</version>
-        </dependency>
+      <dependency>
+        <groupId>org.hibernate.common</groupId>
+        <artifactId>hibernate-commons-annotations</artifactId>
+        <version>5.0.4.Final</version>
+      </dependency>
 
-        <!-- Spring Roo annotations -->
+      <!-- Spring Roo annotations -->
       <dependency>
         <groupId>org.springframework.roo</groupId>
         <artifactId>org.springframework.roo.annotations</artifactId>
@@ -80,43 +81,43 @@
         <scope>provided</scope>
       </dependency>
 
-    <dependency>
-                <groupId>io.springlets</groupId>
-                <artifactId>springlets-data-jpa</artifactId>
-                <version>${springlets.version}</version>
-            </dependency>
-        <dependency>
-                <groupId>io.springlets</groupId>
-                <artifactId>springlets-data-commons</artifactId>
-                <version>${springlets.version}</version>
-            </dependency>
-        <dependency>
-                <groupId>io.springlets</groupId>
-                <artifactId>springlets-context</artifactId>
-                <version>${springlets.version}</version>
-            </dependency>
-        <dependency>
-                <groupId>org.springframework.roo</groupId>
-                <artifactId>org.springframework.roo.querydsl.processor</artifactId>
-                <version>2.0.0.RELEASE</version>
-            </dependency>
-        <dependency>
-                <groupId>io.tracee.binding</groupId>
-                <artifactId>tracee-springmvc</artifactId>
-                <version>${tracee.version}</version>
-            </dependency>
-        <dependency>
-                <groupId>io.springlets</groupId>
-                <artifactId>springlets-boot-starter-web</artifactId>
-                <version>${springlets.version}</version>
-            </dependency>
-        <dependency>
-                <groupId>io.springlets</groupId>
-                <artifactId>springlets-boot-starter-test</artifactId>
-                <version>${springlets.version}</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
+      <dependency>
+        <groupId>io.springlets</groupId>
+        <artifactId>springlets-data-jpa</artifactId>
+        <version>${springlets.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springlets</groupId>
+        <artifactId>springlets-data-commons</artifactId>
+        <version>${springlets.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springlets</groupId>
+        <artifactId>springlets-context</artifactId>
+        <version>${springlets.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.roo</groupId>
+        <artifactId>org.springframework.roo.querydsl.processor</artifactId>
+        <version>2.0.0.RELEASE</version>
+      </dependency>
+      <dependency>
+        <groupId>io.tracee.binding</groupId>
+        <artifactId>tracee-springmvc</artifactId>
+        <version>${tracee.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springlets</groupId>
+        <artifactId>springlets-boot-starter-web</artifactId>
+        <version>${springlets.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springlets</groupId>
+        <artifactId>springlets-boot-starter-test</artifactId>
+        <version>${springlets.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
   </dependencyManagement>
 
   <dependencies>
@@ -130,7 +131,6 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -139,9 +139,9 @@
 
     <!-- Spring Roo annotations -->
     <dependency>
-        <groupId>org.springframework.roo</groupId>
-        <artifactId>org.springframework.roo.annotations</artifactId>
-        <type>pom</type>
+      <groupId>org.springframework.roo</groupId>
+      <artifactId>org.springframework.roo.annotations</artifactId>
+      <type>pom</type>
     </dependency>
 
     <!-- AspectJ dependencies -->
@@ -164,144 +164,144 @@
 
     <!-- Dependencies added by Spring Roo -->
 
-  <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>provided</scope>
-        </dependency>
     <dependency>
-            <groupId>io.springlets</groupId>
-            <artifactId>springlets-data-jpa</artifactId>
-        </dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
     <dependency>
-            <groupId>io.springlets</groupId>
-            <artifactId>springlets-data-commons</artifactId>
-        </dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
-            <groupId>io.springlets</groupId>
-            <artifactId>springlets-context</artifactId>
-        </dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-        </dependency>
+      <groupId>io.springlets</groupId>
+      <artifactId>springlets-data-jpa</artifactId>
+    </dependency>
     <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-jpa</artifactId>
-        </dependency>
+      <groupId>io.springlets</groupId>
+      <artifactId>springlets-data-commons</artifactId>
+    </dependency>
     <dependency>
-            <groupId>org.springframework.roo</groupId>
-            <artifactId>org.springframework.roo.querydsl.processor</artifactId>
-        </dependency>
+      <groupId>io.springlets</groupId>
+      <artifactId>springlets-context</artifactId>
+    </dependency>
     <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+    </dependency>
     <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
+      <groupId>com.querydsl</groupId>
+      <artifactId>querydsl-jpa</artifactId>
+    </dependency>
     <dependency>
-            <groupId>io.tracee.binding</groupId>
-            <artifactId>tracee-springmvc</artifactId>
-        </dependency>
+      <groupId>org.springframework.roo</groupId>
+      <artifactId>org.springframework.roo.querydsl.processor</artifactId>
+    </dependency>
     <dependency>
-            <groupId>io.springlets</groupId>
-            <artifactId>springlets-boot-starter-web</artifactId>
-        </dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
     <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+    </dependency>
     <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+      <groupId>io.tracee.binding</groupId>
+      <artifactId>tracee-springmvc</artifactId>
+    </dependency>
     <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+      <groupId>io.springlets</groupId>
+      <artifactId>springlets-boot-starter-web</artifactId>
+    </dependency>
     <dependency>
-            <groupId>io.springlets</groupId>
-            <artifactId>springlets-boot-starter-test</artifactId>
-        </dependency>
-    </dependencies>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.springlets</groupId>
+      <artifactId>springlets-boot-starter-test</artifactId>
+    </dependency>
+  </dependencies>
 
   <build>
 
     <pluginManagement>
       <plugins>
-	      <plugin>
-	        <groupId>org.springframework.boot</groupId>
-	        <artifactId>spring-boot-maven-plugin</artifactId>
-	        <configuration>
-	          <mainClass>${start-class}</mainClass>
-	          <classifier>exec</classifier>
-	          <excludeDevtools>true</excludeDevtools>
-	        </configuration>
-	      </plugin>
-	      <!-- Compiler plugin -->
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-compiler-plugin</artifactId>
-	        <configuration>
-	          <source>${java.version}</source>
-	          <target>${java.version}</target>
-	          <encoding>${project.build.sourceEncoding}</encoding>
-	          <useIncrementalCompilation>false</useIncrementalCompilation>
-	        </configuration>
-	      </plugin>
-	      <!-- AspectJ plugins -->
-	      <plugin>
-	        <groupId>org.codehaus.mojo</groupId>
-	        <artifactId>aspectj-maven-plugin</artifactId>
-	        <version>${aspectj.plugin.version}</version>
-	        <configuration>
-	          <source>${java.version}</source>
-	          <target>${java.version}</target>
-	          <Xlint>ignore</Xlint>
-	          <complianceLevel>${java.version}</complianceLevel>
-	          <encoding>UTF-8</encoding>
-	        </configuration>
-	        <executions>
-	          <execution>
-	            <phase>process-sources</phase>
-	            <goals>
-	              <goal>compile</goal>
-	              <goal>test-compile</goal>
-	            </goals>
-	          </execution>
-	        </executions>
-	        <dependencies>
-	          <dependency>
-	            <groupId>org.aspectj</groupId>
-	            <artifactId>aspectjtools</artifactId>
-	            <version>${aspectj.version}</version>
-	          </dependency>
-	        </dependencies>
-	      </plugin>
-	      <!-- Surefire plugin configuration -->
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-surefire-plugin</artifactId>
-	        <configuration>
-	          <excludes>
-	            <exclude>**/*_Roo_*</exclude>
-	          </excludes>
-	        </configuration>
-	      </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <configuration>
+            <mainClass>${start-class}</mainClass>
+            <classifier>exec</classifier>
+            <excludeDevtools>true</excludeDevtools>
+          </configuration>
+        </plugin>
+        <!-- Compiler plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <useIncrementalCompilation>false</useIncrementalCompilation>
+          </configuration>
+        </plugin>
+        <!-- AspectJ plugins -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>aspectj-maven-plugin</artifactId>
+          <version>${aspectj.plugin.version}</version>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <Xlint>ignore</Xlint>
+            <complianceLevel>${java.version}</complianceLevel>
+            <encoding>UTF-8</encoding>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>process-sources</phase>
+              <goals>
+                <goal>compile</goal>
+                <goal>test-compile</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>org.aspectj</groupId>
+              <artifactId>aspectjtools</artifactId>
+              <version>${aspectj.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <!-- Surefire plugin configuration -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <excludes>
+              <exclude>**/*_Roo_*</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
         <!-- Asciidoclet plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -340,94 +340,94 @@
             <source>${java.version}</source>
           </configuration>
         </plugin>
-      <plugin>
-                    <groupId>com.mysema.maven</groupId>
-                    <artifactId>apt-maven-plugin</artifactId>
-                    <version>1.1.3</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>process</goal>
-                            </goals>
-                            <configuration>
-              <outputDirectory>target/generated-sources/java</outputDirectory>
-              <processors>
-                <processor>org.springframework.roo.querydsl.processor.RooAnnotationProcessor
-                </processor>
-              </processors>
-            </configuration>
-                        </execution>
-                    </executions>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.querydsl</groupId>
-                            <artifactId>querydsl-apt</artifactId>
-                            <version>${querydsl.version}</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-            <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <configuration>
-			<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-			<excludes>
-        <exclude>**/*_Roo_*</exclude>
-      </excludes>
-		</configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
+        <plugin>
+          <groupId>com.mysema.maven</groupId>
+          <artifactId>apt-maven-plugin</artifactId>
+          <version>1.1.3</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>process</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>target/generated-sources/java</outputDirectory>
+                <processors>
+                  <processor>org.springframework.roo.querydsl.processor.RooAnnotationProcessor
+                  </processor>
+                </processors>
+              </configuration>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>com.querydsl</groupId>
+              <artifactId>querydsl-apt</artifactId>
+              <version>${querydsl.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <configuration>
+            <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+            <excludes>
+              <exclude>**/*_Roo_*</exclude>
+            </excludes>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
     </pluginManagement>
 
     <plugins>
-       <plugin>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-maven-plugin</artifactId>
-       </plugin>
-       <plugin>
-         <groupId>org.apache.maven.plugins</groupId>
-         <artifactId>maven-compiler-plugin</artifactId>
-       </plugin>
-       <plugin>
-         <groupId>org.codehaus.mojo</groupId>
-         <artifactId>aspectj-maven-plugin</artifactId>
-       </plugin>
-       <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-       <plugin>
-         <groupId>org.apache.maven.plugins</groupId>
-         <artifactId>maven-javadoc-plugin</artifactId>
-       </plugin>
-    <plugin>
-                <groupId>com.mysema.maven</groupId>
-                <artifactId>apt-maven-plugin</artifactId>
-            </plugin>
-        <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-            </plugin>
-        </plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>aspectj-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.mysema.maven</groupId>
+        <artifactId>apt-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
 
 </project>

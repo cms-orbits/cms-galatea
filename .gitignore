@@ -9,11 +9,14 @@ target
 .idea
 *.iml
 .vscode
+.classpath
+.project
+.settings
 
 # OS cache
 Thumbs.db
 .DS_Store
 ._*
 
-# Roo
+# Roo (bootstraping tool)
 log.roo

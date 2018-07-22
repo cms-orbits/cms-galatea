@@ -141,8 +141,8 @@ entity projection --class ~.model.DatasetInfo --entity ~.model.Dataset --fields 
 // Windows CMD + GNU sed
 !os .\gen\fix_entities.bat
 
-// Linux Posfix shell
-// !os find . -type f -name *.java -exec sed -i -e '/import javax.persistence.Version;/i import javax.persistence.Transient;' -e 's/@Version/@Version @Transient/' -e 's/@Enumerated/@Enumerated\(EnumType.STRING\)/' {} \;
+// GNU Linux Posfix shell
+// !os ./gen/fix_entities.sh
 
 //------------------------
 // Entity repositories
