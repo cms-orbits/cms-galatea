@@ -1,0 +1,7 @@
+# SCM data
+.git
+
+# IDE's
+.idea
+.settings
+.vscode
