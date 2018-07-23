@@ -1,0 +1,203 @@
+// Project setup with Spring Roo 2.0.0.RELEASE [rev 4a2e9f1]
+// To recreate the project run inside roo shell the following command:
+// script --file gen/init.roo --ignoreLines project
+
+//---------------------
+// Entities of interest
+//---------------------
+
+// TokenMode enum
+enum type --class ~.model.TokenMode
+enum constant --name disabled
+enum constant --name finite
+enum constant --name infinite
+
+// ScoreMode enum
+enum type --class ~.model.ScoreMode
+enum constant --name max_tokened_last
+enum constant --name max --permitReservedWords
+
+// Task entity
+entity jpa --class ~.model.Task --table tasks --readOnly
+field number --fieldName num --type Integer --comment "Display ordinal number"
+field string --fieldName name --notNull --unique --comment "Short human readable name AKA slug"
+field string --fieldName title --notNull --comment "Long human readable name"
+field string --fieldName primaryStatements --column primary_statements --notNull --value "[]" --comment "Available task statement languages JSON array"
+field enum --fieldName tokenMode --type ~.model.TokenMode --column token_mode --notNull --comment "The kind of token rules that will be active during the contest."
+field number --fieldName tokenMaxNumber --type Integer --column token_max_number --value 1 --min 1 --comment "Maximum number of tokens (for finite mode only)"
+field date --fieldName tokenMinInterval --column token_min_interval --type java.time.LocalTime --notNull --timeFormat MEDIUM --dateFormat NONE --comment "The minimum interval between two successive uses of tokens for the same user"
+field number --fieldName tokenGenInitial --type Integer --column token_gen_initial --value 2 --min 0 --notNull --comment "Initial token value (for finite mode only)"
+field number --fieldName tokenGenNumber --type Integer --column token_gen_number --value 2 --min 0 --notNull --comment "Incrementation token interval value (for finite mode only)"
+field number --fieldName tokenGenMax --type Integer --column token_gen_max --value 1 --min 1 --notNull --comment "Token limit (for finite mode only)"
+field date --fieldName tokenGenInterval --column token_gen_interval --type java.time.LocalTime --notNull --timeFormat MEDIUM --dateFormat NONE --value "00:30:00" --comment "Token generation interval (for finite mode only)"
+field number --fieldName maxSubmissionNumber --type Integer --column max_submission_number --value 1 --min 1 --comment "Maximum number of submissions allowed per contest"
+field number --fieldName maxUserTestNumber --type Integer --column max_user_test_number --value 1 --min 1 --comment "Maximum number of user_tests allowed per contest"
+field date --fieldName minSubmissionInterval --column min_submission_interval --type java.time.LocalTime --timeFormat MEDIUM --dateFormat NONE --value "00:00:01" --comment "Minimum interval between two submission"
+field date --fieldName minUserTestInterval --column min_user_test_interval --type java.time.LocalTime --timeFormat MEDIUM --dateFormat NONE --value "00:00:01" --comment "Minimum interval between two user_test"
+field number --fieldName scorePrecision --type Integer --column score_precision --notNull --value 0 --min 0 --comment "Amount of decimals to be held and rounded up"
+field enum --fieldName scoreMode --type ~.model.ScoreMode --column score_mode --notNull --comment "The tasks scoring kind."
+
+// Statement entity
+entity jpa --class ~.model.Statement --table statements --readOnly
+// TODO: Make [id + language] combination unique as embedded entity
+field string --fieldName language --notNull --permitReservedWords --comment "Statement's language short code Ex.: en, en_US"
+field string --fieldName content --column digest --lob --notNull --comment "Statement's (blob) content"
+
+// Attachment entity
+entity jpa --class ~.model.Attachment --table attachments --readOnly
+// TODO: Make [task_id + filename] combination unique as embedded entity
+field string --fieldName filename --notNull --comment "Attachment's file name"
+field string --fieldName content --column digest --lob --notNull --comment "Attachment's (blob) content"
+
+// SubmissionFormatElement entity
+entity jpa --class ~.model.SubmissionFormatElement --table submission_format_elements --readOnly
+field string --fieldName filename --notNull --comment "Submitted file name format. Ex.: myapp.%l or myapp.cpp"
+
+// Dataset entity
+entity jpa --class ~.model.Dataset --table datasets --readOnly
+// TODO: Make [id + task_id ] combination unique as embedded entity
+field string --fieldName description --notNull --comment "A human-readable text describing the dataset."
+field boolean --fieldName autojudge --notNull --value false
+field number --fieldName timeLimit --type Float --column time_limit --min 1 --comment "Test case's time limit."
+field number --fieldName memoryLimit --type Float --column memory_limit --min 1 --comment "Test case's memory limit."
+field string --fieldName taskType --column task_type --notNull --comment "Name of the TaskType child class suited for the task."
+field string --fieldName taskTypeParameters --column task_type_parameters --notNull --comment "Parameters for the task type class, JSON encoded."
+field string --fieldName scoreType --column score_type --notNull --comment "Name of the ScoreType child class suited for the task."
+field string --fieldName scoreTypeParameters --column score_type_parameters --notNull --comment "Parameters for the score type class, JSON encoded."
+
+// ExecutionScenario (testcase) entity
+entity jpa --class ~.model.ExecutionScenario --table testcases --readOnly
+// TODO: Make [dataset_id + codename] combination unique as embedded entity
+field string --fieldName codename --notNull --comment "Codename identifying the execution scenario (testcase)."
+field boolean --fieldName queryable --column "public" --permitReservedWords --notNull --value false --comment "Execution scenario's visibility on public searches"
+// Input and output files' content will be omitted for this iteration
+field string --fieldName inputFilesDigest --column input --notNull --comment "Input files digest."
+field string --fieldName outputFilesDigest --column output --notNull --comment "Output files digest."
+
+// Contest entity
+entity jpa --class ~.model.Contest --table contests --readOnly
+field string --fieldName name --unique --notNull --comment "Short human readable name AKA slug"
+field string --fieldName description --notNull --comment "Human readable description"
+field string --fieldName allowedLocalizations --column allowed_localizations --notNull --value "" --comment "Comma separated allowed locations to participate"
+field string --fieldName languages --column languages --permitReservedWords --notNull --value "Java / JDK,C# / Mono,Python 2 / CPython,Python 3 / CPython" --comment "Comma separated allowed languages."
+field boolean --fieldName submissionsDownloadAllowed --column submissions_download_allowed --notNull --value true --comment "Whether contestants allowed to download their submissions."
+field boolean --fieldName allowQuestions --column allow_questions --notNull --value true --comment "Whether the user question is enabled."
+field boolean --fieldName allowUserTests --column allow_user_tests --notNull --value true --comment "Whether the user test interface is enabled."
+field boolean --fieldName blockHiddenParticipations --column block_hidden_participations --notNull --value false --comment "Whether to prevent hidden participations to log in."
+field boolean --fieldName allowPasswordAuthentication --column allow_password_authentication --notNull --value true --comment "Whether to allow username/password authentication."
+field boolean --fieldName ipRestriction --column ip_restriction --notNull --value true --comment "Whether to enforce that the IP address of the request matches."
+field boolean --fieldName ipAutologin --column ip_autologin --notNull --value false --comment "Whether to automatically log in users connecting from an IP."
+field enum --fieldName tokenMode --column token_mode --type ~.model.TokenMode --notNull --comment "The kind of token rules that will be active during the contest."
+field number --fieldName tokenMaxNumber --type Integer --column token_max_number --value 1 --min 1 --comment "Maximum number of tokens (for finite mode only)"
+field date --fieldName tokenMinInterval --column token_min_interval --type java.time.LocalTime --persistenceType JPA_TIME --notNull --timeFormat MEDIUM --dateFormat NONE --comment "The minimum interval between two successive uses of tokens for the same user"
+field number --fieldName tokenGenInitial --type Integer --column token_gen_initial --value 2 --min 0 --notNull --comment "Initial token value (for finite mode only)"
+field number --fieldName tokenGenNumber --type Integer --column token_gen_number --value 2 --min 0 --notNull --comment "Incrementation token interval value (for finite mode only)"
+field number --fieldName tokenGenMax --type Integer --column token_gen_max --value 1 --min 1 --notNull --comment "Token limit (for finite mode only)"
+field date --fieldName tokenGenInterval --column token_gen_interval --type java.time.LocalTime --persistenceType JPA_TIME --notNull --timeFormat MEDIUM --dateFormat NONE --value "00:30:00" --comment "Token generation interval (for finite mode only)"
+field date --fieldName startTime --column start --type java.time.Instant --persistenceType JPA_TIMESTAMP --notNull --dateTimeFormatPattern "yyyy-MM-dd hh:mm:ss" --comment "Exact time when the contest will be available to interact with."
+field date --fieldName stopTime --column stop --type java.time.Instant --persistenceType JPA_TIMESTAMP --notNull --dateTimeFormatPattern "yyyy-MM-dd hh:mm:ss" --comment "Exact time when the contest will be unavailable to interact with."
+field boolean --fieldName analysisEnabled --column analysis_enabled --notNull --value false --comment "Toggles the contests into analysis mode."
+field date --fieldName analysisStart --column analysis_start --type java.time.Instant --persistenceType JPA_TIMESTAMP --notNull --dateTimeFormatPattern "yyyy-MM-dd hh:mm:ss" --comment "Exact time when the contest will be in analysis mode."
+field date --fieldName analysisStop --column analysis_stop --type java.time.Instant --persistenceType JPA_TIMESTAMP --notNull --dateTimeFormatPattern "yyyy-MM-dd hh:mm:ss" --comment "Exact time when the contest will finish the analysis mode."
+field number --fieldName maxSubmissionNumber --type Integer --column max_submission_number --value 1 --min 1 --comment "Maximum number of submissions allowed per contest"
+field number --fieldName maxUserTestNumber --type Integer --column max_user_test_number --value 1 --min 1 --comment "Maximum number of user_tests allowed per contest"
+field date --fieldName minSubmissionInterval --column min_submission_interval --type java.time.LocalTime --persistenceType JPA_TIME --timeFormat MEDIUM --dateFormat NONE --value "00:00:01" --comment "Minimum interval between two submission"
+field date --fieldName minUserTestInterval --column min_user_test_interval --type java.time.LocalTime --persistenceType JPA_TIME --timeFormat MEDIUM --dateFormat NONE --value "00:00:01" --comment "Minimum interval between two user_test"
+field number --fieldName scorePrecision --type Integer --column score_precision --notNull --value 0 --min 0 --comment "Amount of decimals to be held and rounded up"
+
+//------------------------
+// Entities' relationships
+//-------------------------
+
+// A Contest should have one to many Tasks assigned to it
+focus --class ~.model.Contest
+field set --fieldName tasks --type ~.model.Task --joinColumnName contest_id --fetch LAZY --comment "All the tasks assigned to this Contest"
+
+// A Task may have one Dataset as an one-to-one relationship, many Attachment(s) and SubmissionFormatElement(s)
+focus --class ~.model.Task
+field reference --fieldName activeDataset --type ~.model.Dataset --referencedColumnName active_dataset_id --fetch LAZY --orphanRemoval false --comment "The Dataset currently being used for scoring."
+field list --fieldName submissionFileFormats --type ~.model.SubmissionFormatElement --joinColumnName task_id --fetch LAZY --aggregation false --comment "The filename formats that the participant's submissions must follow."
+field list --fieldName statements --type ~.model.Statement --joinColumnName task_id --fetch LAZY --aggregation false --comment "All the task's statements in different languages."
+field list --fieldName attachments --type ~.model.Attachment --aggregation false --joinColumnName task_id --fetch LAZY --comment "All the statement's attachments."
+
+// A Dataset may have zero or many ExecutionScenario(s)
+focus --class ~.model.Dataset
+field list --fieldName tasks --type ~.model.ExecutionScenario --joinColumnName dataset_id --fetch LAZY --comment "All the testcases (ExecutionScenario) assigned to a Dataset"
+
+//------------------------
+// Entities of interest projections
+//------------------------
+
+entity projection --class ~.model.ContestInfo --entity ~.model.Contest --fields id,name,description,languages,startTime,stopTime --entityFormatExpression "#{id} #{name}"
+entity projection --class ~.model.DatasetInfo --entity ~.model.Dataset --fields id,description,timeLimit,memoryLimit,taskType,scoreType --entityFormatExpression "#{id} #{description}"
+
+//------------------------
+// Generated Entities tweaks
+//------------------------
+
+// Add @Transient to all the @Version fields
+// Change @Enumerated to @Enumerated(EnumType.STRING)
+
+// Windows CMD + GNU sed
+!os .\gen\fix_entities.bat
+
+// GNU Linux Posfix shell
+// !os ./gen/fix_entities.sh
+
+//------------------------
+// Entity repositories
+//-------------------------
+repository jpa --entity ~.model.Contest --defaultReturnType ~.model.ContestInfo
+repository jpa --entity ~.model.Dataset --defaultReturnType ~.model.DatasetInfo
+// ? submissionFormatElements
+repository jpa --all
+
+//------------------------
+// Service layer
+//------------------------
+service --all
+
+//------------------------
+// Entity finders (find, findAll, query and count)
+//------------------------
+
+// Find contest by name
+dto --class ~.model.ContestByName
+field string --fieldName name
+
+finder add --entity ~.model.Contest --name findByName --formBean ~.model.ContestByName
+
+// Find task by name
+finder add --entity ~.model.Task --name findByName
+
+// Find task by name with content
+dto --class ~.model.TaskByNameWithContent
+field string --fieldName name
+field string --fieldName contentLanguage
+field number --fieldName contestId --type Long
+
+//------------------------
+// Controllers
+//------------------------
+web mvc setup
+
+// Only expose the Resources that matter
+web mvc controller --entity ~.model.Contest --pathPrefix /galatea/v1/ --responseType JSON
+web mvc controller --entity ~.model.Task --pathPrefix /galatea/v1/ --responseType JSON
+
+//------------------------
+// (Placeholder) Unit tests
+//------------------------
+test unit --class ~.model.Contest
+test unit --class ~.model.Task
+
+//------------------------
+// (Placeholder) Integration tests
+//------------------------
+test integration --class ~.repository.ContestRepository
+test integration --class ~.repository.TaskRepository
+
+test integration --class ~.web.ContestsCollectionJsonController
+test integration --class ~.web.ContestsItemJsonController
+test integration --class ~.web.TasksCollectionJsonController
+test integration --class ~.web.TasksItemJsonController
