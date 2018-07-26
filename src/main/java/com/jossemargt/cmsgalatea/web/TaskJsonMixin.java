@@ -10,6 +10,7 @@ import com.jossemargt.cmsgalatea.model.Contest;
 import com.jossemargt.cmsgalatea.model.Statement;
 import com.jossemargt.cmsgalatea.model.SubmissionFormatElement;
 import java.util.List;
+import java.util.Set;
 
 /**
  * = TaskJsonMixin
@@ -38,8 +39,7 @@ public abstract class TaskJsonMixin {
      * TODO Auto-generated attribute documentation
      *
      */
-    @JsonIgnore
-    private List<Statement> statements;
+    private Set<Statement> statements;
 
     /**
      * TODO Auto-generated attribute documentation
@@ -71,7 +71,7 @@ public abstract class TaskJsonMixin {
      *
      * @return List
      */
-    public List<Statement> getStatements() {
+    public Set<Statement> getStatements() {
         return statements;
     }
 
@@ -80,7 +80,7 @@ public abstract class TaskJsonMixin {
      *
      * @param statements
      */
-    public void setStatements(List<Statement> statements) {
+    public void setStatements(Set<Statement> statements) {
         this.statements = statements;
     }
 

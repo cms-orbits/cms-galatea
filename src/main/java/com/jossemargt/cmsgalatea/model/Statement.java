@@ -13,9 +13,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import org.hibernate.annotations.Type;
 import io.springlets.format.EntityFormat;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -25,21 +27,18 @@ import javax.persistence.Table;
  TODO Auto-generated class documentation
  *
  */
-@RooJavaBean(settersByDefault = false)
-@RooToString
-@RooJpaEntity(table = "statements", readOnly = true)
-@RooEquals(isJpaEntity = true)
+
+@RooJpaEntity(table = "statements")
 @Entity
 @Table(name = "statements")
-@EntityFormat
 public class Statement {
 
     /**
      * TODO Auto-generated attribute documentation
      *
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -62,6 +61,7 @@ public class Statement {
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @NotNull
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "digest")
     private String content;
 
@@ -69,10 +69,13 @@ public class Statement {
      * TODO Auto-generated attribute documentation
      *
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "task_id")
     @EntityFormat
     private Task task;
+    
+    
+    public Statement() {};
 
     /**
      * Gets id value
@@ -117,6 +120,10 @@ public class Statement {
      */
     public Task getTask() {
         return this.task;
+    }
+    
+    public void setTask(Task task) {
+        this.task = task;
     }
 
     /**
