@@ -3,9 +3,12 @@ import org.springframework.roo.addon.javabean.annotations.RooEquals;
 import org.springframework.roo.addon.javabean.annotations.RooJavaBean;
 import org.springframework.roo.addon.javabean.annotations.RooToString;
 import org.springframework.roo.addon.jpa.annotations.entity.RooJpaEntity;
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 import org.springframework.format.annotation.NumberFormat;
@@ -25,7 +28,7 @@ import javax.persistence.OneToOne;
 import org.springframework.roo.addon.jpa.annotations.entity.JpaRelationType;
 import org.springframework.roo.addon.jpa.annotations.entity.RooJpaRelation;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.persistence.OneToMany;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -49,8 +52,8 @@ public class Task {
      * TODO Auto-generated attribute documentation
      *
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -231,9 +234,9 @@ public class Task {
     /**
      * All the task's statements in different languages.
      */
-    @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
-    @RooJpaRelation(type = JpaRelationType.COMPOSITION)
-    private List<Statement> statements = new ArrayList<Statement>();
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "task")
+    @RooJpaRelation(type = JpaRelationType.AGGREGATION)
+    private Set<Statement> statements = new HashSet<Statement>();
 
     /**
      * All the statement's attachments.
@@ -445,8 +448,17 @@ public class Task {
      *
      * @return List
      */
-    public List<Statement> getStatements() {
+    public Set<Statement> getStatements() {
         return this.statements;
+    }
+    
+    /**
+     * Gets statements value
+     *
+     * @return List
+     */
+    public void setStatements(Set<Statement> statements) {
+        this.statements = statements;
     }
 
     /**
