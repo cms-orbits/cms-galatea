@@ -25,6 +25,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.roo.addon.jpa.annotations.entity.JpaRelationType;
 import org.springframework.roo.addon.jpa.annotations.entity.RooJpaRelation;
 import java.util.ArrayList;
@@ -39,13 +41,9 @@ import javax.persistence.Table;
  TODO Auto-generated class documentation
  *
  */
-@RooJavaBean(settersByDefault = false)
-@RooToString
 @RooJpaEntity(table = "tasks", readOnly = true)
-@RooEquals(isJpaEntity = true)
 @Entity
 @Table(name = "tasks")
-@EntityFormat
 public class Task {
 
     /**
@@ -219,10 +217,8 @@ public class Task {
     /**
      * The Dataset currently being used for scoring.
      */
-    @OneToOne(cascade = { javax.persistence.CascadeType.MERGE, javax.persistence.CascadeType.PERSIST }, orphanRemoval = false, fetch = FetchType.LAZY, mappedBy = "task")
-    @RooJpaRelation(type = JpaRelationType.AGGREGATION)
-    @EntityFormat
-    private Dataset activeDataset;
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "task")
+//    private Dataset activeDataset;
 
     /**
      * The filename formats that the participant's submissions must follow.
@@ -234,8 +230,8 @@ public class Task {
     /**
      * All the task's statements in different languages.
      */
-    @OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "task")
-    @RooJpaRelation(type = JpaRelationType.AGGREGATION)
+    @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
+    @RooJpaRelation(type = JpaRelationType.COMPOSITION)
     private Set<Statement> statements = new HashSet<Statement>();
 
     /**
@@ -430,9 +426,9 @@ public class Task {
      *
      * @return Dataset
      */
-    public Dataset getActiveDataset() {
+/*    public Dataset getActiveDataset() {
         return this.activeDataset;
-    }
+    }*/
 
     /**
      * Gets submissionFileFormats value

@@ -159,7 +159,18 @@ public class TaskServiceImpl implements TaskService {
      * @return Task
      */
     public Task findOne(Long id) {
+    	System.out.println("-------dfasdfasdffffffffffff--------------");
         return getTaskRepository().findOne(id);
+    }
+    
+    /**
+     * TODO Auto-generated method documentation
+     *
+     * @param id
+     * @return Task
+     */
+    public Task findTaskByIdAndLang(Long id, String lang) {
+        return getTaskRepository().findTaskByIdAndLang(id, lang);
     }
 
     /**

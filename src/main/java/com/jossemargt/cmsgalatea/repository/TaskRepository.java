@@ -6,6 +6,7 @@ import com.jossemargt.cmsgalatea.model.Contest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  * = TaskRepository
@@ -40,4 +41,15 @@ public interface TaskRepository extends ReadOnlyRepository<Task, Long>, TaskRepo
      * @return Long
      */
     public abstract long countByName(String name);
+    
+    
+    /**
+     * TODO Auto-generated method documentation
+     *
+     * @param id
+     * @param language
+     * @return Task
+     */
+    @Query("SELECT t, s FROM Task t  JOIN FETCH t.statements s WHERE t.id = ?1 and s.language like ?2")
+    public Task findTaskByIdAndLang(Long id, String language);
 }
