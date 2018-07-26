@@ -3,8 +3,16 @@ import com.jossemargt.cmsgalatea.model.Task;
 import org.springframework.roo.addon.web.mvc.controller.annotations.ControllerType;
 import org.springframework.roo.addon.web.mvc.controller.annotations.RooController;
 import org.springframework.roo.addon.web.mvc.controller.annotations.responses.json.RooJSON;
+import org.springframework.util.MultiValueMap;
+
 import com.jossemargt.cmsgalatea.service.api.TaskService;
 import io.springlets.web.NotFoundException;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
@@ -68,8 +77,20 @@ public class TasksItemJsonController {
      * @return Task
      */
     @ModelAttribute
-    public Task getTask(@PathVariable("task") Long id) {
-        Task task = taskService.findOne(id);
+    public Task getTask(@PathVariable("task") Long id, 
+			@RequestParam MultiValueMap<String, String> multiMap) {
+    	String lang = "";
+    	Task task = null;
+    	
+    	if(multiMap.get("lang") != null) {
+    		lang = multiMap.get("lang").get(0);
+    		task = getTaskService().findTaskByIdAndLang(id, lang);        	
+    	}else {
+    		task = getTaskService().findOne(id);
+    	}
+    	
+   
+        
         if (task == null) {
             throw new NotFoundException(String.format("Task with identifier '%s' not found", id));
         }
