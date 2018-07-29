@@ -217,15 +217,15 @@ public class Task {
     /**
      * The Dataset currently being used for scoring.
      */
-//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "task")
-//    private Dataset activeDataset;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "task")
+    private Dataset activeDataset;
 
     /**
      * The filename formats that the participant's submissions must follow.
      */
-    @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
+    @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "task")
     @RooJpaRelation(type = JpaRelationType.COMPOSITION)
-    private List<SubmissionFormatElement> submissionFileFormats = new ArrayList<SubmissionFormatElement>();
+    private Set<SubmissionFormatElement> submissionFileFormats = new HashSet<SubmissionFormatElement>();
 
     /**
      * All the task's statements in different languages.
@@ -435,7 +435,7 @@ public class Task {
      *
      * @return List
      */
-    public List<SubmissionFormatElement> getSubmissionFileFormats() {
+    public Set<SubmissionFormatElement> getSubmissionFileFormats() {
         return this.submissionFileFormats;
     }
 

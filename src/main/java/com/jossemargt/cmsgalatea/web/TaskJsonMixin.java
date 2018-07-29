@@ -45,7 +45,6 @@ public abstract class TaskJsonMixin {
      * TODO Auto-generated attribute documentation
      *
      */
-    @JsonIgnore
     private List<SubmissionFormatElement> submissionFileFormats;
 
     /**

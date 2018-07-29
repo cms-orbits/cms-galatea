@@ -59,7 +59,6 @@ public class SubmissionFormatElement {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
-    @EntityFormat
     private Task task;
 
     /**
