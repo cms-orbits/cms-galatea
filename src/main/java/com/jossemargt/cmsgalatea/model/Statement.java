@@ -21,6 +21,8 @@ import javax.persistence.OneToOne;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import org.hibernate.annotations.Formula;
 
 /**
  * = Statement
@@ -64,6 +66,12 @@ public class Statement {
     @Type(type = "org.hibernate.type.TextType")
     @Column(name = "digest")
     private String content;
+    
+    
+    
+    @Formula("(select lo.data from pg_largeobject lo, fsobjects fs where lo.loid = fs.loid and fs.digest = digest limit 1)")
+    private byte[] text;
+    
 
     /**
      * TODO Auto-generated attribute documentation
@@ -123,6 +131,14 @@ public class Statement {
     
     public void setTask(Task task) {
         this.task = task;
+    }
+    
+    public byte[] getText() {
+        return this.text;
+    }
+    
+    public void setText(byte[] text) {
+        this.text = text;
     }
 
     /**
