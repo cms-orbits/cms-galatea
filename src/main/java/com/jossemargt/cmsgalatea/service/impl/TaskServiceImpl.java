@@ -17,12 +17,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 /**
  * = TaskServiceImpl
@@ -33,9 +27,6 @@ import javax.persistence.Query;
 @Service
 @Transactional(readOnly = true)
 public class TaskServiceImpl implements TaskService {
-	
-	@Autowired
-    private JdbcTemplate jtm;
 
     /**
      * TODO Auto-generated attribute documentation
@@ -168,7 +159,6 @@ public class TaskServiceImpl implements TaskService {
      * @return Task
      */
     public Task findOne(Long id) {
-    	System.out.println("-------dfasdfasdffffffffffff--------------");
         return getTaskRepository().findOne(id);
     }
     
@@ -178,17 +168,7 @@ public class TaskServiceImpl implements TaskService {
      * @param id
      * @return Task
      */
-    public Task findTaskByIdAndLang(Long id, String lang) {
-    	/*String sql = "SELECT * FROM tasks";
-
-        List<Task> tasks = jtm.query(sql, new BeanPropertyRowMapper(Task.class));
-
-        for (Task task: tasks) {
-        	System.out.println("========");
-            System.out.println(task);
-        }*/
-    	
-    	
+    public Task findTaskByIdAndLang(Long id, String lang) {    	
         return getTaskRepository().findTaskByIdAndLang(id, lang);
     }
 
