@@ -12,7 +12,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jossemargt.cmsgalatea</groupId>
   <artifactId>cmsgalatea</artifactId>
-  <version>0.1.0.BUILD-SNAPSHOT</version>
+  <version>0.1.0</version>
   <name>cmsgalatea</name>
 
   <packaging>jar</packaging>
