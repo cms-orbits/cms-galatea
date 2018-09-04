@@ -209,7 +209,7 @@ public class Task {
      * TODO Auto-generated attribute documentation
      *
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "contest_id")
     @EntityFormat
     private Contest contest;
