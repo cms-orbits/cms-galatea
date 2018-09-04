@@ -3,9 +3,12 @@ import org.springframework.roo.addon.javabean.annotations.RooEquals;
 import org.springframework.roo.addon.javabean.annotations.RooJavaBean;
 import org.springframework.roo.addon.javabean.annotations.RooToString;
 import org.springframework.roo.addon.jpa.annotations.entity.RooJpaEntity;
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 import org.springframework.format.annotation.NumberFormat;
@@ -22,10 +25,12 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.roo.addon.jpa.annotations.entity.JpaRelationType;
 import org.springframework.roo.addon.jpa.annotations.entity.RooJpaRelation;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.persistence.OneToMany;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -36,21 +41,17 @@ import javax.persistence.Table;
  TODO Auto-generated class documentation
  *
  */
-@RooJavaBean(settersByDefault = false)
-@RooToString
 @RooJpaEntity(table = "tasks", readOnly = true)
-@RooEquals(isJpaEntity = true)
 @Entity
 @Table(name = "tasks")
-@EntityFormat
 public class Task {
 
     /**
      * TODO Auto-generated attribute documentation
      *
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -208,7 +209,7 @@ public class Task {
      * TODO Auto-generated attribute documentation
      *
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "contest_id")
     @EntityFormat
     private Contest contest;
@@ -216,24 +217,22 @@ public class Task {
     /**
      * The Dataset currently being used for scoring.
      */
-    @OneToOne(cascade = { javax.persistence.CascadeType.MERGE, javax.persistence.CascadeType.PERSIST }, orphanRemoval = false, fetch = FetchType.LAZY, mappedBy = "task")
-    @RooJpaRelation(type = JpaRelationType.AGGREGATION)
-    @EntityFormat
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "task")
     private Dataset activeDataset;
 
     /**
      * The filename formats that the participant's submissions must follow.
      */
-    @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
+    @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "task")
     @RooJpaRelation(type = JpaRelationType.COMPOSITION)
-    private List<SubmissionFormatElement> submissionFileFormats = new ArrayList<SubmissionFormatElement>();
+    private Set<SubmissionFormatElement> submissionFileFormats = new HashSet<SubmissionFormatElement>();
 
     /**
      * All the task's statements in different languages.
      */
     @OneToMany(cascade = { javax.persistence.CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "task")
     @RooJpaRelation(type = JpaRelationType.COMPOSITION)
-    private List<Statement> statements = new ArrayList<Statement>();
+    private Set<Statement> statements = new HashSet<Statement>();
 
     /**
      * All the statement's attachments.
@@ -427,16 +426,16 @@ public class Task {
      *
      * @return Dataset
      */
-    public Dataset getActiveDataset() {
+/*    public Dataset getActiveDataset() {
         return this.activeDataset;
-    }
+    }*/
 
     /**
      * Gets submissionFileFormats value
      *
      * @return List
      */
-    public List<SubmissionFormatElement> getSubmissionFileFormats() {
+    public Set<SubmissionFormatElement> getSubmissionFileFormats() {
         return this.submissionFileFormats;
     }
 
@@ -445,8 +444,17 @@ public class Task {
      *
      * @return List
      */
-    public List<Statement> getStatements() {
+    public Set<Statement> getStatements() {
         return this.statements;
+    }
+    
+    /**
+     * Gets statements value
+     *
+     * @return List
+     */
+    public void setStatements(Set<Statement> statements) {
+        this.statements = statements;
     }
 
     /**

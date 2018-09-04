@@ -24,6 +24,14 @@ public interface TaskService extends EntityResolver<Task, Long>, ValidatorServic
      * @return Task
      */
     public abstract Task findOne(Long id);
+    
+    /**
+     * TODO Auto-generated method documentation
+     *
+     * @param id
+     * @return Task
+     */
+    public abstract Task findTaskByIdAndLang(Long id, String lang);
 
     /**
      * TODO Auto-generated method documentation
