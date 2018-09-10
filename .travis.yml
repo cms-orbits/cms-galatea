@@ -6,14 +6,14 @@ sudo: required
 services:
   - docker
 
-script: mvn package dockerfile:build
+script: mvn clean package dockerfile:build
 
 before_deploy: 
   - mvn versions:set -DnewVersion=$TRAVIS_TAG
   - docker --version
 deploy:
   provider: script
-  script: mvn package dockerfile:push -DskipTests=true -Ddockerfile.username=$DOCKER_USERNAME -Ddockerfile.password=$DOCKER_PASSWORD
+  script: mvn package dockerfile:build dockerfile:push -DskipTests=true -Ddockerfile.username=$DOCKER_USERNAME -Ddockerfile.password=$DOCKER_PASSWORD
   on:
     repo: jossemarGT/cms-galatea
     branch: master

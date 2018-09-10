@@ -8,13 +8,13 @@ resources.
 ## Up and running
 
 CMS Galatea can be deployed and run as a Docker container or a standalone java
-application (a fat jar); either way is strongly recommend to run this
-application as the former one.
+application (a fat jar); either way is recommend to run this application as 
+the former one.
 
 ### Prerequisites
 
-CMS Galatea heavily relies on [CMS](https://github.com/cms-dev/cms) database, so
-in order to have this application up and running you need:
+CMS Galatea relies on [CMS](https://github.com/cms-dev/cms) database, so in 
+order to have this application up and running you need:
 
 1. CMS 1.3.x or greater DB schema (the current Galatea version was designed against the last CMS revision in Jan 2018)
 2. CMS PostreSQL DB schema access (it could be the same crendentials that CMS uses but is not recommended)
@@ -75,7 +75,7 @@ git clone https://github.com/jossemarGT/cms-galatea.git galatea
 cd galetea
 ```
 
-Open the source code with your prefered text editor, hack and test/build the
+Open the source code with your preferred text editor, hack and test/build the
 results with maven:
 
 ```shell
@@ -88,6 +88,14 @@ All the git (remote) branches and pull requests on this repository are being
 tracked by [Travis CI](https://travis-ci.org), each commit source code is test
 and built, but only the git tags from master branch will be released as a Java
 artifact (jar) and Docker image.
+
+If you need to reproduce the tagging and release cycle, you could manually use
+the following maven goals: 
+
+```shell
+mvn versions:set -DnewVersion=$(git describe --abbrev=0 --tags)
+mvn package dockerfile:build dockerfile:push
+```
 
 ### Versioning
 
@@ -102,5 +110,5 @@ could use the `gen/init.roo` roo script.
 
 ## License
 
-This project is licensed under the **MIT License** - see the [LICENSE.md](LICENSE)
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE)
 file for details.
