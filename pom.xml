@@ -12,7 +12,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jossemargt.cmsgalatea</groupId>
   <artifactId>cmsgalatea</artifactId>
-  <version>0.1.0.BUILD-SNAPSHOT</version>
+  <version>0.2.0</version>
   <name>cmsgalatea</name>
 
   <packaging>jar</packaging>
@@ -21,14 +21,14 @@
     <roo.version>2.0.0.RELEASE</roo.version>
     <java.product.version>8</java.product.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <aspectj.plugin.version>1.8</aspectj.plugin.version>
+    <aspectj.plugin.version>1.9</aspectj.plugin.version>
     <asciidoclet.version>1.5.4</asciidoclet.version>
     <spring-boot.version>1.5.14.RELEASE</spring-boot.version>
     <java.version>1.8</java.version>
     <springlets.version>1.2.0.RELEASE</springlets.version>
     <tracee.version>1.1.2</tracee.version>
     <docker.image.namespace>jossemargt</docker.image.namespace>
-    <dockerfile-maven-version>1.4.3</dockerfile-maven-version>
+    <dockerfile-maven-version>1.4.4</dockerfile-maven-version>
   </properties>
 
   <repositories>
